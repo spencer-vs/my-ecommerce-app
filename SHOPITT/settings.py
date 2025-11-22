@@ -157,17 +157,34 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
+#STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+
+
+#STATIC_ROOT = BASE_DIR / "staticfiles"
+#STATIC_URL = 'static/'
+#MEDIA_URL = 'img/'
+#MEDIA_ROOT = BASE_DIR/"media"
+
+
+# Static files (CSS, JS, images) - served by WhiteNoise
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+# Media files (user uploads)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+# Django 5.2+ STORAGES configuration
 STORAGES = {
-    # ...
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",  # for MEDIA files
+    },
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
 
-STATIC_ROOT = BASE_DIR / "staticfiles"
-STATIC_URL = 'static/'
-MEDIA_URL = 'img/'
-MEDIA_ROOT = BASE_DIR/"media"
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
