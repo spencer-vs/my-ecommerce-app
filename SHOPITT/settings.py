@@ -226,7 +226,9 @@ SIMPLE_JWT = {
 SESSION_COOKIE_SAMESITE = 'Lax'
 
 
-REACT_BASE_URL = os.getenv("REACT_BASE_URL", "http://localhost:5173")
+REACT_BASE_URL = os.getenv("REACT_BASE_URL")
 
 FLUTTERWAVE_SECRET_KEY = os.getenv("FLUTTERWAVE_SECRET_KEY")
-BASE_URL = os.getenv("BASE_URL", "http://localhost:5173")
+BASE_URL = os.getenv("BASE_URL")
+
+print("Flutterwave key:", FLUTTERWAVE_SECRET_KEY)
