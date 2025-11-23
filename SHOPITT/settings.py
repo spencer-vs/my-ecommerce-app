@@ -200,7 +200,7 @@ AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend']
 
 
 
-FLUTTERWAVE_SECRET_KEY = os.getenv("FLWSECK_TEST-218494ef572293a5a2176a7f6a6f1ad0-X")
+
 
 
 
@@ -227,3 +227,6 @@ SESSION_COOKIE_SAMESITE = 'Lax'
 
 
 REACT_BASE_URL = os.getenv("REACT_BASE_URL", "http://localhost:5173")
+
+FLUTTERWAVE_SECRET_KEY = os.getenv("FLUTTERWAVE_SECRET_KEY")
+BASE_URL = os.getenv("BASE_URL", "http://localhost:5173")

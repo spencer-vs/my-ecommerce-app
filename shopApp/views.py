@@ -18,7 +18,7 @@ from datetime import timedelta
 import random
 import string
 
-BASE_URL = settings.REACT_BASE_URL
+BASE_URL = settings.BASE_URL
 
 User = get_user_model()
 
