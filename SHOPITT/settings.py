@@ -117,10 +117,10 @@ WSGI_APPLICATION = 'SHOPITT.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+DATABASE_URL = os.getenv("DATABASE_URL")
 DATABASES = {
-    'default': dj_database_url.config(
-        default='sqlite:///db.sqlite3',
-        conn_max_age=600,
+    'default': dj_database_url.parse(
+       DATABASE_URL
     )
 }
 
