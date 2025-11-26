@@ -117,9 +117,26 @@ WSGI_APPLICATION = 'SHOPITT.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# DATABASES = {
+#     "default": dj_database_url.config(default=os.environ.get("DATABASE_URL"))
+# }
+
+
 DATABASES = {
-    "default": dj_database_url.config(default=os.environ.get("DATABASE_URL"))
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DB_NAME'),        # Database name
+        'USER': os.getenv('DB_USER'),        # Database username
+        'PASSWORD': os.getenv('DB_PASSWORD'),# Database password
+        'HOST': os.getenv('DB_HOST'),        # Database hostname (from Render)
+        'PORT': os.getenv('DB_PORT', '5432'),# Port (default 5432 for PostgreSQL)
+    }
 }
+
+
+
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
