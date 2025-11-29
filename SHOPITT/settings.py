@@ -80,18 +80,20 @@ CORS_ALLOW_CREDENTIALS = True
 
 
 CSRF_TRUSTED_ORIGINS = [
+    "https://smartmart-2gn1.onrender.com",
     "http://127.0.0.1:5173",
     "http://127.0.0.1:5173",
-    "https://smartmart-2gn1.onrender.com"
+    
 ]
 
 
 CORS_ALLOWED_ORIGINS = [
+    "https://smartmart-2gn1.onrender.com",
     'http://localhost:5173',
     "http://127.0.0.1:5173",
     "http://127.0.0.1:5174",
     "http://127.0.0.1:5175",
-    "https://smartmart-2gn1.onrender.com"
+   
 ]
 
 ROOT_URLCONF = 'SHOPITT.urls'
