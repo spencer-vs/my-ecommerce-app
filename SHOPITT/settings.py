@@ -32,9 +32,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-_3h7mgs1o1w6=0%(czwg0s2&@21%4f)j($-z_)!i*ltv%(!6m4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'my-ecommerce-app-z1s7.onrender.com' ]
+ALLOWED_HOSTS = ['127.0.0.1', 'my-ecommerce-app-z1s7.onrender.com']
 
 
 # Application definition
@@ -121,7 +121,11 @@ WSGI_APPLICATION = 'SHOPITT.wsgi.application'
 
 
 DATABASES = {
-    'default': dj_database_url.parse(os.getenv("DATABASE_URL"))
+    'default': dj_database_url.config(
+        default=os.environ.get("DATABASE_URL"),
+        conn_max_age=600,
+        ssl_require=True
+    )
 }
 
 
@@ -235,4 +239,4 @@ REACT_BASE_URL = os.getenv("REACT_BASE_URL")
 FLUTTERWAVE_SECRET_KEY = os.getenv("FLUTTERWAVE_SECRET_KEY")
 BASE_URL = os.getenv("BASE_URL")
 
-print("Flutterwave key:", FLUTTERWAVE_SECRET_KEY)
+#print("Flutterwave key:", FLUTTERWAVE_SECRET_KEY)
