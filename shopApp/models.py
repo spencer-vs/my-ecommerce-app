@@ -51,6 +51,10 @@ class Product(models.Model):
                 self.slug = f"{original_slug}-{counter}"
                 counter += 1
             
+        
+        if self.image and not self.image.name.startswith('http'):
+            old_image = self.image
+            self.image = old_image    
             
             
         super().save(*args, **kwargs)
