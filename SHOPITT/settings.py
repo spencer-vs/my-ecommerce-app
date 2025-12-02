@@ -193,7 +193,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 # Media files (user uploads)
-# MEDIA_URL = '/media/'
+MEDIA_URL = '/media/'
 # MEDIA_ROOT = BASE_DIR / 'media'
 # Django 5.2+ STORAGES configuration
 STORAGES = {
@@ -206,11 +206,11 @@ STORAGES = {
 }
 
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.getenv("CLOUDINARY_CLOUD_NAME"),
-    'API_KEY': os.getenv("CLOUDINARY_API_KEY"),
-    'API_SECRET': os.getenv("CLOUDINARY_API_SECRET"),
-}
+# CLOUDINARY_STORAGE = {
+#     'CLOUD_NAME': os.getenv("CLOUDINARY_CLOUD_NAME"),
+#     'API_KEY': os.getenv("CLOUDINARY_API_KEY"),
+#     'API_SECRET': os.getenv("CLOUDINARY_API_SECRET"),
+# }
 
 
 
