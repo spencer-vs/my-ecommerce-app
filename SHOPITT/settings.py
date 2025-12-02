@@ -17,6 +17,16 @@ from datetime import timedelta
 import dj_database_url
 import os
 from dotenv import load_dotenv
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+cloudinary.config(
+    cloud_name=os.getenv("CLOUDINARY_CLOUD_NAME"),
+    api_key=os.getenv("CLOUDINARY_API_KEY"),
+    api_secret=os.getenv("CLOUDINARY_API_SECRET")
+)
+
 
 # load environement variables from .env file
 load_dotenv()
@@ -32,9 +42,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-_3h7mgs1o1w6=0%(czwg0s2&@21%4f)j($-z_)!i*ltv%(!6m4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG", "FALSE") == "TRUE"
 
-ALLOWED_HOSTS = ['127.0.0.1', 'my-ecommerce-app-z1s7.onrender.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'my-ecommerce-app-z1s7.onrender.com', 'localhost:8001']
 
 
 # Application definition
@@ -50,6 +60,8 @@ INSTALLED_APPS = [
     'core',
     'shopApp',
     'corsheaders',
+    'cloudinary_storage',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -181,17 +193,28 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 # Media files (user uploads)
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = BASE_DIR / 'media'
 # Django 5.2+ STORAGES configuration
 STORAGES = {
     "default": {
-        "BACKEND": "django.core.files.storage.FileSystemStorage",  # for MEDIA files
+        "BACKEND": 'cloudinary_storage.storage.MediaCloudinaryStorage',  # for MEDIA files
     },
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
+
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.getenv("CLOUDINARY_CLOUD_NAME"),
+    'API_KEY': os.getenv("CLOUDINARY_API_KEY"),
+    'API_SECRET': os.getenv("CLOUDINARY_API_SECRET"),
+}
+
+
+
+
 
 
 
@@ -221,7 +244,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication'
     ),
     'DEFAULT_PERMISSION_CLASSES': (
-        
+        #rest_framework.IsAuthenticated,
         'rest_framework.permissions.AllowAny'
     ),
 }
