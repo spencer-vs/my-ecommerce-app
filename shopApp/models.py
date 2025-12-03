@@ -52,9 +52,9 @@ class Product(models.Model):
                 counter += 1
             
         
-        if self.image and not self.image.name.startswith('http'):
-            old_image = self.image
-            self.image = old_image    
+        # if self.image and not self.image.name.startswith('http'):
+        #     old_image = self.image
+        #     self.image = old_image    
             
             
         super().save(*args, **kwargs)
