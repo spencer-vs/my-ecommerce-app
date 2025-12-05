@@ -338,6 +338,9 @@ class CreateCartView(APIView):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def initiate_payment(request):
+    
+    redirect_base = settings.BASE_URL or settings.REACT_BASE_URL
+       
     cart_code = request.data.get("cart_code")
     if not cart_code:
         return Response({"error": "cart_code required"}, status=400)
@@ -364,7 +367,7 @@ def initiate_payment(request):
         "tx_ref": tx_ref,
         "amount": str(total),
         "currency": "NGN",
-        "redirect_url": f"{settings.BASE_URL}/payment-status/",
+        "redirect_url": f"{redirect_base}/payment-status/",
         "customer": {
             "email": user.email if user else "guest@example.com",
             "name": user.username if user else "Guest"
